@@ -1,10 +1,16 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { object, string } from "yup";
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { object, string } from 'yup';
 
 const ContactForm = ({ addContact }) => {
   const validationSchema = object({
-    name: string().min(3, "Minimum 3 characters").max(50, "Maximum 50 characters").required("Required"),
-    number: string().min(3, "Minimum 3 characters").max(50, "Maximum 50 characters").required("Required"),
+    name: string()
+      .min(3, 'Minimum 3 characters')
+      .max(50, 'Maximum 50 characters')
+      .required('Required'),
+    number: string()
+      .min(3, 'Minimum 3 characters')
+      .max(50, 'Maximum 50 characters')
+      .required('Required'),
   });
 
   const handleSubmit = (values, { resetForm }) => {
@@ -14,7 +20,7 @@ const ContactForm = ({ addContact }) => {
 
   return (
     <Formik
-      initialValues={{ name: "", number: "" }}
+      initialValues={{ name: '', number: '' }}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
