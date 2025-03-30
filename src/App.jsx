@@ -6,24 +6,24 @@ import SearchBox from './components/SearchBox';
 import ContactList from './components/ContactList';
 
 const App = () => {
+  const dispatch = useDispatch();
   const contacts = useSelector((state) => state.contacts.items);
   const filter = useSelector((state) => state.filters.name);
-  const dispatch = useDispatch();
 
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
-  const handleFilterChange = (e) => {
-    dispatch(changeFilter(e.target.value));
-  };
-
   const handleAddContact = (name, number) => {
-    dispatch(addContact({ id: nanoid(), name, number }));
+    dispatch(addContact({ name, number }));
   };
 
   const handleDeleteContact = (id) => {
     dispatch(deleteContact(id));
+  };
+
+  const handleFilterChange = (e) => {
+    dispatch(changeFilter(e.target.value));
   };
 
   return (
