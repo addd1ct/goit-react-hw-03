@@ -5,7 +5,7 @@ import Contact from './Contact';
 const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector((state) => state.contacts.items);
-  const filter = useSelector((state) => state.filters.filter);
+  const filter = useSelector((state) => state.filters.name);
 
   const normalizedFilter = filter ? filter.toLowerCase() : '';
 
