@@ -1,14 +1,18 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
+import { useDispatch } from 'react-redux';
+import { addContact } from '../redux/contactsSlice';
 
-const ContactForm = ({ addContact }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
+
   const validationSchema = object({
     name: string().min(3, 'Minimum 3 characters').max(50, 'Maximum 50 characters').required('Required'),
     number: string().min(3, 'Minimum 3 characters').max(50, 'Maximum 50 characters').required('Required'),
   });
 
   const handleSubmit = (values, { resetForm }) => {
-    addContact(values.name, values.number);
+    dispatch(addContact({ name: values.name, number: values.number }));
     resetForm();
   };
 
