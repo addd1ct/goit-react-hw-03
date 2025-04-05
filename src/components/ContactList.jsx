@@ -8,7 +8,7 @@ const ContactList = () => {
   const filter = useSelector((state) => state.filters.filter);
 
   const filteredContacts = contacts.filter((contact) =>
-    contact.name && contact.name.toLowerCase().includes(filter ? filter.toLowerCase() : '')
+    contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
   const handleDelete = (id) => {
