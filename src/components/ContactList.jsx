@@ -5,6 +5,11 @@ import Contact from './Contact';
 const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector((state) => state.contacts.items);
+  const filter = useSelector((state) => state.filters.filter);
+
+  const filteredContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   const handleDelete = (id) => {
     dispatch(deleteContact(id));
@@ -12,7 +17,7 @@ const ContactList = () => {
 
   return (
     <ul>
-      {contacts.map(({ id, name, number }) => (
+      {filteredContacts.map(({ id, name, number }) => (
         <Contact key={id} id={id} name={name} number={number} deleteContact={handleDelete} />
       ))}
     </ul>
